@@ -1,0 +1,6 @@
+# Notepad'i yönetici olarak ve gizli başlat
+Start-Process notepad.exe -WindowStyle Hidden -Verb RunAs
+# 5 saniye bekle
+Start-Sleep -Seconds 5
+# Notepad'i zorla kapat (Kancayı tetikle)
+Get-Process notepad -ErrorAction SilentlyContinue | Stop-Process -Force
